@@ -1,33 +1,79 @@
-div.cla-left {
-  width: 49%;
-  border: 2px red solid;
-}
-
-div.cla-right {
-  width: 49%;
-  border: 2px blue solid;
-  height: 100%;
-}
-
 .classified-container {
   border: green 2px solid;
 }
-.classified-container h2.cla-title {
+.classified-container ul {
+  height: 100%;
+  width: 100%;
+  list-style: none;
+}
+.classified-container ul li {
+  height: 150px;
+}
+.classified-container ul li div.cla-left {
+  vertical-align: top;
+  display: inline-block;
+  height: 95%;
+  width: 49%;
+  border: 2px red solid;
+}
+.classified-container ul li div.cla-left h2.cla-title {
   font-size: 1.5em;
   font-weight: 550;
 }
-.classified-container h3.cla-keywords {
+.classified-container ul li div.cla-left h3.cla-keywords {
   font-size: 1.2em;
   font-weight: 530;
   color: darkorange;
 }
-.classified-container h3.cla-keywords span {
+.classified-container ul li div.cla-left h3.cla-keywords span {
   display: inline-block;
   margin-right: 15px;
 }
-.classified-container h3.cla-resume {
+.classified-container ul li div.cla-left h3.cla-resume {
   margin-top: 10px;
   font-size: 1em;
+}
+.classified-container ul li div.cla-left h4.cla-type-num {
+  margin: 0px;
+}
+.classified-container ul li div.cla-right {
+  vertical-align: top;
+  display: inline-block;
+  height: 95%;
+  width: 49%;
+  border: 2px blue solid;
+}
+.classified-container ul li div.cla-right div.cla-img-box {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.classified-container ul li div.cla-right div.cla-img-box img[class|="cla-img"] {
+  -webkit-border-top-left-radius: 5px;
+  -moz-border-top-left-radius: 5px;
+  -o-border-top-left-radius: 5px;
+  border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-top-right-radius: 5px;
+  -o-border-top-right-radius: 5px;
+  border-top-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -moz-border-bottom-left-radius: 5px;
+  -o-border-bottom-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -moz-border-bottom-right-radius: 5px;
+  -o-border-bottom-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-top: 5px;
+  height: 90%;
+  width: 45%;
+}
+.classified-container ul li div.cla-right div.cla-img-box img.cla-img-1 {
+  margin-left: 10px;
 }
 
 /*# sourceMappingURL=classified.css.map */

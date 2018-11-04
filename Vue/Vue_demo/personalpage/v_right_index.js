@@ -17,7 +17,7 @@ Vue.component("tag",{
     data:function(){
         return {
             currentTagList:this.taglist,
-            activeTitle:0
+            activeTitle:0  // ！！！ 如果改为其他值，即默认初始显示不是第一页，那么在样式特效行为上可能会出现崩坏，暂时不知解决方法以及崩坏原因。
         };
     },
     methods:{
@@ -85,6 +85,48 @@ Vue.component("pannel",{
 
 Vue.component("classified",{
     template:"#classified",
+    data:function(){
+        return {
+            items:[{
+                data:"0505",
+                imgSrc:["img/personalpage/yoom2.jpg","img/personalpage/yoom.jpg"], 
+                title:"前端工程师面试成功",
+                keyWords:["web前端","自定义","关键词","标签"],
+                resume:"大家好，我想要成为一名优秀的前端工程师，因此我每天学习都很开心，所以我非常的喜欢魂魄妖梦，我非常喜欢妖梦。妖梦给了我很多的动力！我是从幻想万华镜中了解到妖梦的，之所以我喜欢，是因为他太萌了，蝴蝶结魅力十足，蝴蝶结赛高，裸腿赛高，波波头赛高！",
+                type:"数学建模",
+                num:"18843163425"
+            },
+            {
+                data:"0606",
+                imgSrc:["img/personalpage/yoom.jpg"],
+                title:"数学建模国赛一等奖",
+                keyWords:["国赛","数学建模","一等奖","激动"],
+                resume:"历经了半个数十家的数学建模培训，虽然劳累，但是收获了国赛一等奖还是非常值得的。",
+                type:"红色行动",
+                num:"18845123698"
+            }],
+            the_user_opt : {
+                the_user:the_user
+            }
+        };
+    },
+    methods:{
+        getPersonalMessage(){
+            this.$http.post("xxx.php",this.the_user_opt,{emulateJSON:true}).then(function(response){
+                // this.items.push(JSON.parse(JSON.stringify(response.body)));
+                // console.log(JSON.parse(JSON.stringify(response.body)));
+                var _items = JSON.parse(JSON.stringify(response.body))
+                for(var item in _items){
+                    this.items.push(JSON.parse(JSON.stringify(response.body))[item]);
+                }
+            },function(){
+                console.log("请求失败");
+            });
+        }
+    },
+    mounted(){
+        this.getPersonalMessage();
+    }
 });
 
 
@@ -96,7 +138,7 @@ Vue.component("overview",{
             /*item中的信息应该来自于php，本组件向php发送Ajax请求*/
             items:[{
                     data:"0505",
-                    imgSrc:"img/personalpage/yoom2.jpg",
+                    imgSrc:["img/personalpage/yoom2.jpg"],
                     title:"前端工程师面试成功",
                     keyWords:["web前端","自定义","关键词","标签"],
                     resume:"大家好，我想要成为一名优秀的前端工程师，因此我每天学习都很开心，所以我非常的喜欢魂魄妖梦，我非常喜欢妖梦。妖梦给了我很多的动力！我是从幻想万华镜中了解到妖梦的，之所以我喜欢，是因为他太萌了，蝴蝶结魅力十足，蝴蝶结赛高，裸腿赛高，波波头赛高！",
@@ -105,7 +147,7 @@ Vue.component("overview",{
                 },
                 {
                     data:"0606",
-                    imgSrc:"img/personalpage/头像涅普.jpg",
+                    imgSrc:["img/personalpage/头像涅普.jpg"],
                     title:"数学建模国赛一等奖",
                     keyWords:["国赛","数学建模","一等奖","激动"],
                     resume:"历经了半个数十家的数学建模培训，虽然劳累，但是收获了国赛一等奖还是非常值得的。",
@@ -120,8 +162,13 @@ Vue.component("overview",{
     methods:{
         getPersonalMessage(){
             this.$http.post("xxx.php",this.the_user_opt,{emulateJSON:true}).then(function(response){
-                this.items.push(JSON.parse(JSON.stringify(response.body)));
-                // console.log(JSON.parse(JSON.stringify(response.body)));
+                // this.items.push(JSON.parse(JSON.stringify(response.body)));
+                console.log(JSON.parse(JSON.stringify(response.body)));
+                var _items = JSON.parse(JSON.stringify(response.body))
+                for(var item in _items){
+                    this.items.push(JSON.parse(JSON.stringify(response.body))[item]);
+                }
+                
             },function(){
                 console.log("请求失败");
             });

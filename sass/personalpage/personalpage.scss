@@ -1,5 +1,4 @@
 @import "./personalNav.scss";
-
 div.main-container{ /*主体框架样式*/
     position:absolute;
     left:0px;
@@ -154,6 +153,7 @@ div.main-container{ /*主体框架样式*/
             }
         }
         div.tag-container{
+            height:800px;
             margin: {
                 left:3%;
             }

@@ -75,15 +75,17 @@
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <strong>Warning!</strong> Better check yourself, you're not looking too good.
             </div>
-            <tag :taglist = "['预 览 全 部','我 的 成 就']">
+            <tag :taglist = "['预 览 全 部','预览全部','我 的 成 就']">
                 <div class = "pannel-describe" slot = "pannel-describe">这是描述</div>
                 <template scope = "props"> <!--props的值来自tag的default slot-->
                     <pannel  :active-pannel = "props.activePannel">
                         <overview slot = "overview"></overview>
                     </pannel>
                     <pannel  :active-pannel = "props.activePannel">
+                            <overview slot = "overview"></overview>
+                    </pannel>
+                    <pannel  :active-pannel = "props.activePannel">
                         <classified slot = "classified"></classified>
-                        <!-- <test2></test2> -->
                     </pannel>
                 </template>
             </tag>
@@ -99,23 +101,25 @@
     <template id = "classified">
         <div class = 'classified-container'>
             <ul>
-                <li>
+                <li v-for = "(item,index) in items">
                     <div class = "cla-left">
-                        <h2 class = "cla-title">数学建模大赛一等奖</h2>
-                        <h3 class = "cla-keywords"><span>数学建模</span><span>一等奖</span><span>家族首创</span></h3>
-                        <h3 class = "cla-resume">大家好，我想要成为一名优秀的前端工程师，因此我每天......学习都很开心，所以我非常
+                        <h2 class = "cla-title">{{item.title}}</h2>
+                        <h3 class = "cla-keywords"><span v-for = "key in item.keyWords">{{key}}</span></h3>
+                        <h3 class = "cla-resume">{{item.resume.slice(0,23)}}......<!--天学习都很开心，所以我非常
                         的喜欢魂魄妖梦，我非常喜欢妖梦。妖梦给了我很多的动力！我是从幻想万华镜中了解到妖梦的，之所以我喜欢，
-                        是因为他太萌了，蝴蝶结魅力十足，蝴蝶结赛高，裸腿赛高，波波头赛高！</h3>
-                        <hr />
+                        是因为他太萌了，蝴蝶结魅力十足，蝴蝶结赛高，裸腿赛高，波波头赛高！--></h3>
                         <h4 class = "cla-type-num">
-                            <span>数学建模</span><span>18843163425</span>
+                            <span>{{item.type}}</span><span>{{item.num}}</span>
                         </h4>
                     </div>
             
                     <div class = "cla-right">
-                        
+                        <div class = "cla-img-box">
+                            <img v-for = "img in item.imgSrc" class = "cla-img-1" :src = "img">
+                        <div>
                     </div>
                 </li>
+                
             </ul>
         </div>
     </template>
