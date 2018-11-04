@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ATC测试首页</title>
+    <script src = "JQuery/jquery-3.2.1.min.js"></script>
+    <script src = "js/homepage.js"></script>
+    <!--bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!--消除浏览器默认样式-->
+    <link rel="stylesheet" href="css/cleardefault.css">
+    <!--主页CSS文件-->
+    <link rel="stylesheet" href="css/homepage/homepage.css2.css">
+    
+    <link rel="stylesheet" href="css/homepage/homepage.css">
+</head>
+<body>
+<div class = "mask"></div>  <!--遮罩层默认隐藏-->  
+<div class = "nav-container">
+        <div class = "nav">
+            <ul class = "nav-content">
+                <li class = "home left">ATC平台</li>
+                <li class = "about-us left">关于我们</li>
+                <li class = "sign-in right">登&nbsp;陆</li>
+                <li class = "sign-out right">注&nbsp;册</li> <!--这个地方用sige-out写错了，不恰当-->
+            </ul>
+        </div>
+</div>
+
+
+<!--首页大图-->
+
+<img class = "img-homepage" src = "img/图2.jpg">
+
+
+<!--注册模板-->
+<div class = "register" id = "register">
+    <h2>注册账号</h2>
+    <div class = "form-container">
+        <form class = "register-form form-horizontal" method = "post" active = "#">
+
+            <div class="center form-group">
+                <div>
+                    <label for="inputEmail3" class="col-sm-2 control-label">学号</label>
+                
+                    <div class="col-sm-10">
+                        <input v-model = "reg_message.number" type="number" class="reg-num form-control" id="inputEmail3" placeholder="学号">
+                    </div>
+                </div>    
+            </div>
+
+
+            <div class="center form-group">
+                <div>
+                    <label for="inputEmail3" class="col-sm-2 control-label">邮箱</label>
+
+                    <div class="col-sm-10">
+                        <input v-model = "reg_message.email" type="email" class="reg-email form-control" id="inputEmail3" placeholder="邮箱">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="center form-group">
+                <div>
+                    <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+                    <div class="col-sm-10">
+                        <input v-model = "reg_message.password" type="password" class="reg-password form-control" id="inputPassword3" placeholder="密码">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="center form-group">
+                <div>
+                    <label for="inputPassword3" class="col-sm-2 control-label">确认密码</label>
+                    <div class="col-sm-10">
+                        <input @change = "confirmPassword" ref="confirmPassword" type="password" class="reg-confirm-password form-control" id="inputPassword3" placeholder="确认密码">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="center form-group">
+                <div>
+                    <label for="inputPassword3" class="col-sm-2 control-label">验证码</label>
+                    <div class="col-sm-10">
+                        <input v-model = "reg_message.identify" type="text" class="reg-identify-code form-control" id="inputPassword3" placeholder="验证码">
+                    </div>
+                </div>
+            </div>
+            
+            <img  class = "identify-img" src = "img/验证码.jpg">
+            <br />            
+            <button @click = "submit" ref = "reg_subbtn" type="button" :class="subbtnClass">注&nbsp;册&nbsp;{{ count_down }}</button>
+        </form>
+    </div>
+</div> <!--注册模板-->
+
+
+<!--登陆模板-->
+<div class = "login" id = "login">
+        <h2>登&nbsp;陆</h2>
+        <div class = "form-container">
+            <form class = "login-form form-horizontal" method = "post" active = "#">
+    
+    
+                    <div class="center form-group">
+                        <div>
+                            <label for="inputEmail3" class="col-sm-2 control-label">学号</label>
+                        
+                            <div class="col-sm-10">
+                                <input v-model = "log_message.number" type="number" class="log-num form-control" id="inputEmail3" placeholder="学号">
+                            </div>
+                        </div>    
+                    </div>
+    
+    
+                <div class="center form-group">
+                    <div>
+                        <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+                        <div class="col-sm-10">
+                            <input v-model = "log_message.password" type="password" class="log-password form-control" id="inputPassword3" placeholder="密码">
+                        </div>
+                    </div>
+                </div>
+
+    
+                <div class="center form-group">
+                    <div>
+                        <label for="inputPassword3" class="col-sm-2 control-label">验证码</label>
+                        <div class="col-sm-10">
+                            <input v-model = "log_message.identify" type="text" class="log-identify-code form-control" id="inputPassword3" placeholder="验证码">
+                        </div>
+                    </div>
+                </div>
+                
+                <img  class = "identify-img" src = "img/验证码.jpg">
+    
+    
+                <div class="center form-group">
+                    <div>
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox">
+                        <label>
+                            <input type="checkbox" v-model = "remember" > 记住我&nbsp;(Tip:不是自己电脑不要勾选此选项以免账号被盗)
+                        </label>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <button @click = "submit" type="button" class="log-subbtn btn btn-primary">登&nbsp;录</button>
+            </form>
+        </div>
+</div> <!--登陆模板-->
+
+<!--占位符-->
+<h1 class = "placeholder">
+    PlaceHolder
+</h1>
+    
+
+</body>
+<script src = "js/setCookie.js"></script>
+<script src="js/getCookie.js"></script>
+<script src="js/test.js"></script>
+<script src = "Vue/Vue_source/vue2.5.17.js"></script>
+<script src = "Vue/Vue_source/vue-resource.min.js"></script>
+<script src = "Vue/Vue_demo/homepage/v_homepage.js"></script>
+</html>

@@ -1,0 +1,50 @@
+@import "../mixins.scss";
+
+@mixin cla-box($color){
+    // display:inline-block;
+    width:49%;
+    border:2px $color solid;
+}
+
+div.cla-left{
+    @include cla-box(red);
+}
+
+div.cla-right{
+    @include cla-box(blue);
+    height:100%;
+}
+
+.classified-container{
+    border:green 2px solid;
+    h2.cla-title{
+        font: {
+            size:1.5em; 
+            weight:550;
+        }
+    }
+    h3.cla-keywords{
+        font: {
+            size:1.2em;
+            weight:530;
+        }
+        color:darkorange;
+        span{
+            display:inline-block;
+            margin: {
+                right:15px;
+            }
+            padding: {
+                // left:5px;
+            }   
+        }
+    }
+    h3.cla-resume{
+        margin: {
+            top:10px;
+        }
+        font: {
+            size:1em;
+        }
+    }
+}

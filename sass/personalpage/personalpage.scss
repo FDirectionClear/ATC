@@ -1,0 +1,202 @@
+@import "./personalNav.scss";
+
+div.main-container{ /*主体框架样式*/
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:70%;
+    border:2px hotpink solid;
+    margin: {
+        top:110px;
+        left:15%;
+    }
+    .placeholder{
+        height:1800px;
+        padding: {
+            left:30px;
+            top:30px;
+        }
+        background:rgba(pink,.8);
+        font: {
+            weight:700;
+            size:3em;
+        }
+    }
+                      
+    div.info-left-main{
+        float:left;
+        // border:1px green solid;
+        // height:300px;
+        width:25%;
+        // background:lightgreen;
+        div.info-left{
+            float:left;
+            // border:1px green solid;
+            // height:300px;
+            width:100%;
+            // background:lightgreen;
+            img.avatar-header{
+                display:block;
+                margin:5%;
+                height:90%;
+                width:90%;
+                transition:box-shadow .3s;
+                cursor: pointer;
+                @include border-radius(10px,10px);
+                &:hover{
+                    @include box-shadow(0px,0px,10px,orange);
+                }
+            }
+            span.personal-name{
+                @extend img.avatar-header;
+                margin:4%;
+                font: {
+                    size:1.5em;
+                }
+            }
+            div.manifesto{
+                width:90%;
+                // border:1px red solid;  
+                margin-left:5%;
+                margin-bottom:5%;
+                p.manifesto-text{
+                    overflow: hidden;
+                    font: {
+                        size:0.9em;
+                    }
+                    text-indent:0em;
+                    letter-spacing:1.2px;
+                }
+            }
+            div.my-manifesto {
+                // position:relative;
+                // left:100px;
+                // top:0px;
+                height:70%;
+                width:90%;
+                // border:2px black solid;
+                // background:gray;
+                margin-left:5%;
+                margin-bottom:5%;
+                textarea{
+                    // height:75%;
+                    margin-left:50%;
+                    transform:translateX(-50%);
+                    height:150px;
+                    width:100%;
+                    @include border-radius(7px,8px);
+                }
+                @mixin main-button($color,$height,$width,$border){ // personalpage左侧主要大按钮专用宏
+                    // $color为按钮背景颜色和边框颜色 $border为按钮边宽
+                    // $height $width为按钮高和宽
+                    //按钮自动水平居中
+                    height:$height;
+                    width:$width;
+                    margin-left:50%;
+                    transform:translateX(-50%);
+                    background:$color;
+                    border:$border $color solid;
+                }
+                @mixin minor-button($color,$height,$width,$border){
+                    height:$height;
+                    width:$width;
+                    background:$color;
+                    border:$border $color solid;
+                }
+                button.btn-manifesto{
+                    margin-bottom:3px;
+                    @include main-button(#ffcc66,10%,100%,0px);
+                }
+                button.btn-complete{
+                    @include main-button(#ffcc66,10%,100%,0px);
+                    margin: {
+                        top:10px;
+                        bottom:10px;
+                    }
+                }
+                div.minor-btn-group-1{
+                    
+                    // border:red solid 2px;
+                    // margin-left:50%;
+                    // transform:translateX(-50%);
+                    button.btn-deliver, button.btn-cancel{
+                        margin{
+                            top:5px;
+                            right:10px;
+                        }
+                        margin: {
+                            left:6%;
+                            top:0px;
+                        }
+                        @include minor-button(lightblue,40% ,40% ,0px); //#0066cc
+                    }
+                }
+                
+            }
+           
+            
+        }
+        
+        
+    }
+
+/***********************************左右分割******左右分割********左右分割**************************************/
+
+    div.info-right-main{
+        float:right;
+        border:1px blue solid;
+        // height:500px;
+        width:75%;
+        // background:lightblue;
+        div.warning{
+            margin: {
+                left:3%;
+            }
+        }
+        div.tag-container{
+            margin: {
+                left:3%;
+            }
+            border:4px brown solid;
+            ul.title-list{
+            border:3px rebeccapurple solid;
+            height:55px;
+            list-style:none;
+                li.titletag{
+                    height:100%;
+                    width:15%;
+                    border:blue 1px solid;
+                    display:inline-block;
+                    margin-right:10px;
+                    span{
+                        display: inline-block; // 针对span必须要设置成块状元素或者行内块级元素才行
+                        position: relative;
+                        left:50%;
+                        top:50%;
+                        transform: translate(-50%,-50%);
+                    }
+                }
+                li.titletag.active-title{
+                    border-bottom:orangered 3px solid;
+                }
+            }
+        }
+        
+    }
+
+
+}
+
+
+
+/**********************************其他**************************************************************/
+
+
+#monstrous{
+    border:2px red solid; 
+}
+.component-test{
+    height:500px;
+    width:100%;
+    border:orangered 2px solid;
+}

@@ -1,0 +1,33 @@
+div.cla-left {
+  width: 49%;
+  border: 2px red solid;
+}
+
+div.cla-right {
+  width: 49%;
+  border: 2px blue solid;
+  height: 100%;
+}
+
+.classified-container {
+  border: green 2px solid;
+}
+.classified-container h2.cla-title {
+  font-size: 1.5em;
+  font-weight: 550;
+}
+.classified-container h3.cla-keywords {
+  font-size: 1.2em;
+  font-weight: 530;
+  color: darkorange;
+}
+.classified-container h3.cla-keywords span {
+  display: inline-block;
+  margin-right: 15px;
+}
+.classified-container h3.cla-resume {
+  margin-top: 10px;
+  font-size: 1em;
+}
+
+/*# sourceMappingURL=classified.css.map */

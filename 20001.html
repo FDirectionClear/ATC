@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/animate.css">
+    <title>测试</title>
+    <style>
+        .cir{
+            position:relative;
+            left:50%;
+            top:50%;
+            transform:translate(-50%,-50%);
+            height:5px;
+            width:5px;
+            background:black;
+            border-radius: 50px;
+        }
+        .kid1{ /*元素的原始状态*/
+            opacity: 1;
+            transform: translateX(30px);
+            border:2px hotpink solid;
+            height:150px;
+            width:150px;
+            background:pink;
+        }
+        .kid2{
+            opacity: 1;
+            transform: translateX(30px);
+            border:2px hotpink solid;
+            height:150px;
+            width:150px;
+            background:pink;
+            transform:scale(1.5);
+        }
+        .fxm-enter{ /*在元素插入之前生效，插入后的下一帧删除*/
+            opacity: 0; /**/
+            transform: translateX(0px);
+            border:2px skyblue solid; /**/
+            height:100px;   /**/
+            width:100px;    /**/
+            background:lightblue; /**/
+        }
+        .fxm-enter-to{ /*在元素插入的下一帧生效，与此同时v-enter删除，可能是先入为主的原因导致权值最高？*/
+            opacity: 1;
+            transform: translateX(30px);
+            border:2px hotpink solid;
+            height:150px;
+            width:150px;
+            background:pink;
+        }
+        .fxm-enter-active{ /*在元素插入之前生效，此时也有v-enter*/
+            width:80px;
+            transition: all 2s;
+        }
+        .fxm-leave{
+            opacity: 1;
+            transform: translateX(30px);
+            border:2px hotpink solid;
+            height:150px;
+            width:150px;
+            background:pink;
+        }
+        .fxm-leave-to{
+            transform: translateX(0px);
+            opacity: 0;
+            border:2px skyblue solid;
+            height:100px;
+            width:100px;
+            background:lightblue;
+        }
+        .fxm-leave-active{
+            height:80px;
+            transition: all 1.5s;
+        }
+
+        /*--------------------------分割线---------------------------*/
+        .zyt-enter-active {
+  animation: bounce-in 5s;
+}
+.zyt-leave-active {
+  animation: bounce-in 5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+        
+.bounce-enter-active {
+  animation: bounce-in 5s;
+}
+.bounce-leave-active {
+  animation: bounce-in 5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.asd{
+    transform:scale(1.5);
+}
+
+    </style>
+</head>
+<body>
+    <div class="parent" id = "app">
+        <button @click = "show = !show">fade</button>
+        <transition name = "fxm"
+        @before-enter = "beforeEnter"
+        @enter = "enter(chang)"
+        @after-enter = "afterEnter"
+        @enter-cancelled = "enterCancelled"
+        @before-leave = "beforeLeave"
+        @leave = "leave"
+        @after-leave = "afterLeave"
+        @leave-cancelled = "leaveCancelled">
+            <div class="kid1" v-show = "show"><div class="cir"></div></div>
+            
+        </transition>
+    </div>
+    <br><br><br><br>
+    <div class="kid2" v-show = "show"><div class="cir"></div></div>
+    <br><br>
+    <div class = "amimation" id = "app2">
+        <button @click = "show = !show">hidden</button>
+        <transition name = "zyt">
+            <p v-if = "show" class = "asd">你好，我是方向明!你好，我是方向明!你好，我是方向明!你好，我是方向明!你好，我是方向明!你好，我是方向明!你好，我是方向明!你好，我是方向明!</p>  
+        </transition>
+    </div>
+    <div id="example-2">
+            <button @click= "show = !show">Toggle show</button>
+            <transition name="bounce" :duration="{ enter: 3000, leave: 3000 }">
+              <p v-if="show">你好，我是方向明!你好，我是方向明!你好，我是方向明!你好，我是方向明!你好，我是方向明!你好，我是方向明!你好，我是方向明!你好，我是方向明!</p>
+            </transition>
+    </div>
+     
+    <div id = "example-3">
+        <button @click = "show = !show">切换</button>
+        <transition name = "yoomeng"
+                    leave-active-class = "animated bounceOut"
+                    enter-active-class = "animated bounceIn"
+                    >
+            <div v-show = "show">我是方向明</div>
+        </transition>
+    </div>
+    <!-- <div class = "animated lightSpeedIn infinite">方向明</div>
+    <div class = "animated bounceOut infinite">方向明</div> -->
+    
+</body>
+<script src = "Vue/Vue_source/vue2.5.17.js"></script>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            show:true
+        },
+        methods:{
+            chang(){
+                console.log("结束了结束了");
+            },
+            beforeEnter(el){
+                alert("表演开始");
+            },
+            enter(el,down){
+                down(); // 回调函数
+            },
+            afterEnter(){},
+            enterCancelled(){},
+            beforeLeave(){},
+            leave(){},
+            afterLeave(){},
+            leaveCancelled(){}
+        }
+    });
+    var app2 = new Vue({
+        el:"#app2",
+        data:{
+            show:true
+        }
+    });
+    new Vue({
+        el: '#example-2',
+        data: {
+            show: true
+        }
+    });
+    var app3 = new Vue({
+        el:"#example-3",
+        data:{
+            show: true
+        }
+    });
+</script>
+</html>
