@@ -7,36 +7,27 @@
     <link rel="stylesheet" href="css/animate.css">
     <title>测试</title>
     <style>
-        .grandfather{
-            display:inline-block;
-            height:300px;
-            width:500px;
-            border:hotpink solid 2px;
-        }
-        .father{
-            display:inline-block;
-            height:60%;
-            width:50%;
-            border:2px blue solid;
-        }
-        .kid{
-            display:inline-block;
-            height:50%;
-            width:50%;
-            border:1px red solid;
-        }
+        
     </style>
 </head>
 <body>
-    <div class="grandfather">
+    <div class="grandfather" id = "app">
         <div class="father">
-            <div class="kid"></div>
+            <input type="text" v-model = "g">
+            <!-- <fang :value = "g" @input = "up"></fang> -->
+            <!--如果我想让子组件因为某个事件想把某个值传给父组件，同时还让父组件把值传给子组件的value，那么就可以使用语法糖value-->
+            <fang v-model = "g"></fang>
         </div>
     </div>
-
-
+    <template id = "fang">
+        <div>
+            {{currentValue}}
+            <button @click = "update">变</button>
+        </div>
+    </template>
+    
 </body>
 <script src = "Vue/Vue_source/vue2.5.17.js"></script>
 <script src="js/test2.js"></script>
-<script src = "js/test.js"></script>
+<!-- <script src = "js/test.js"></script> -->
 </html>

@@ -60,10 +60,13 @@ Vue.component("pannel",{
             currentActivePannel:this.activePannel,
             myIndex:"",
             show:"",
+           
         };
     },
     methods:{
-        
+        // aasd(){
+        //     console.log("你找错人了");
+        // }
     },
     watch:{
         activePannel(){
@@ -83,10 +86,44 @@ Vue.component("pannel",{
     }
 });
 
-Vue.component("classified",{
-    template:"#classified",
+Vue.component("checkbar",{
+    template:"#checkbar",
+    
     data:function(){
         return {
+            searchText:"",
+            searchType:"",
+            newType:""
+        };
+    },
+    methods:{
+        typeSelect(event){
+            // console.log(event.target.innerHTML);
+            this.$emit("keyTypeUpdate",event.target.innerHTML);
+        }
+    },
+    watch:{
+        searchText(){
+            this.$emit("keystrupdate",this.searchText);
+        }
+    }
+});
+
+Vue.component("classified",{
+    template:"#classified",
+    props:{
+        keyStr:{
+            type:String,
+            default:"前端"
+        },
+        keyType:{
+            type:String,
+            default:"数学"
+        }
+    },
+    data:function(){
+        return {
+            currentKeyStr:this.keyStr,
             items:[{
                 data:"0505",
                 imgSrc:["img/personalpage/yoom2.jpg","img/personalpage/yoom.jpg"], 
@@ -122,10 +159,21 @@ Vue.component("classified",{
             },function(){
                 console.log("请求失败");
             });
+        },
+        claMatch(item,str){
+            var reg = new RegExp(str.trim()); // 最开始记反了，在RegExp中的字符串应该是要匹配的内容
+            var bol =  reg.test(item); // test中的字符串是的要找的地方
+            return reg.test(item);
         }
+    },
+    watch:{
+       keyStr(){
+            this.currentKeyStr = this.keyStr;
+       } 
     },
     mounted(){
         this.getPersonalMessage();
+        // this.$emit("keyStrUpdate");
     }
 });
 
@@ -185,7 +233,20 @@ Vue.component("overview",{
 new Vue({
     el:"#right",
     data:{
-        tagList:["预览全部","我的成就"] // 这个未必用的上
+        tagList:["预览全部","我的成就"], // 这个未必用的上
+        keyStr:"",
+        keyType:""
+    },
+    methods:{
+        keystrupdate(key){
+            this.keyStr = key;
+        },
+        keyTypeUpdate(key){
+            this.keyType = key;
+        }
+    },
+    mounted(){
+        // this.keyStrUpdate();
     }
 });
 

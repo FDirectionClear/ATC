@@ -22,3 +22,10 @@
     -o-border-bottom-right-radius: $bottom;
     border-bottom-right-radius: $bottom;
 }
+%cancel-float{
+    float:none !important;
+}
+%inline-block{
+    display:inline-block;
+    vertical-align: top;
+}

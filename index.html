@@ -9,6 +9,8 @@
     <script src = "JQuery/jquery-3.2.1.min.js"></script>
     <!-- personalpage.js-->
     <script src = "js/personalpage.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!--suolve.js-->
     <!-- <script src = "js/personalpage.js"></script> -->
     <!--bootstrap-->
@@ -23,6 +25,8 @@
     <link rel="stylesheet" type = "text/css" href="css/personalpage/overview_suolve.css">
     <!--classified.css-->
     <link rel = "stylesheet" type = "text/css" href = "css/personalpage/classified.css">
+    <!--checkbar.css-->
+    <link rel="stylesheet" type = "text/css" href="css/personalpage/checkbar.css">
 </head>
 <body>
 
@@ -70,22 +74,21 @@
            
         </div>
 
-        <div class="info-right-main" id = "right"> <!--页面主体右侧部分-->
+        <div class="info-right-main" id = "right" >  <!--页面主体右侧部分-->
             <div class="warning alert alert-warning alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <strong>Warning!</strong> Better check yourself, you're not looking too good.
             </div>
-            <tag :taglist = "['预 览 全 部','预览全部','我 的 成 就']">
+            <tag :taglist = "['预 览 全 部','我 的 成 就']">
                 <div class = "pannel-describe" slot = "pannel-describe">这是描述</div>
                 <template scope = "props"> <!--props的值来自tag的default slot-->
                     <pannel  :active-pannel = "props.activePannel">
                         <overview slot = "overview"></overview>
                     </pannel>
+                
                     <pannel  :active-pannel = "props.activePannel">
-                            <overview slot = "overview"></overview>
-                    </pannel>
-                    <pannel  :active-pannel = "props.activePannel">
-                        <classified slot = "classified"></classified>
+                        <checkbar slot = "checkbar" @keystrupdate = "keystrupdate" @key-type-update = "keyTypeUpdate"></checkbar>
+                        <classified slot = "classified" :key-str = "keyStr" :key-type = "keyType"></classified>
                     </pannel>
                 </template>
             </tag>
@@ -97,11 +100,46 @@
 
     </div>
 
+    <template id = "checkbar">
+        <div class="checkbar-container ">
+
+                <div class="input-group search-input">
+                    <input v-model = "searchText" type="text" class="form-control" placeholder="Search for title...">
+                </div>
+                <div class="btn-group selected-btn">
+                    <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        selected <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" @click.prevent = "typeSelect($event)">数学建模</a></li>
+                        <li><a href="#">互联网+</a></li>
+                        <li><a href="#">红色行动</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">其他</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group selected-btn">
+                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        New <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="">数学建模</a></li>
+                        <li><a href="#">互联网+</a></li>
+                        <li><a href="#">红色行动</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">其他</a></li>
+                    </ul>
+                </div>
+                <hr>
+
+        </div>
+    </template>
+
     <!--本组件为classified，可以自行请求ajax数据-->
     <template id = "classified">
         <div class = 'classified-container'>
             <ul>
-                <li v-for = "(item,index) in items">
+                <li v-for = "(item,index) in items" v-show = "claMatch(item.title,currentKeyStr)">
                     <div class = "cla-left">
                         <h2 class = "cla-title">{{item.title}}</h2>
                         <h3 class = "cla-keywords"><span v-for = "key in item.keyWords">{{key}}</span></h3>
@@ -119,8 +157,8 @@
                         <div>
                     </div>
                 </li>
-                
             </ul>
+            
         </div>
     </template>
 
@@ -186,7 +224,7 @@
     <template id = "pannel">
         <div v-show = "show" class = "cc"><!--来自pannel组件-->
             <!-- <h2>{{ currentActivePannel }}</h2> -->
-            <!-- <slot name = "checkbox"></slot> -->
+            <slot name = "checkbar"></slot>
             <slot name = "overview"></slot>
             <slot name = "classified"></slot>
             <!--空slot用于备用和占位符测试-->

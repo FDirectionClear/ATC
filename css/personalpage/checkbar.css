@@ -1,0 +1,30 @@
+div.checkbar-container {
+  float: none !important;
+}
+
+div.checkbar-container .search-input, div.checkbar-container .selected-btn {
+  display: inline-block;
+  vertical-align: top;
+}
+
+div.checkbar-container {
+  border: 2px black solid;
+  margin: 1% 0px;
+  height: 83px;
+}
+div.checkbar-container .search-input {
+  border: darkcyan 2px solid;
+  width: 50%;
+  margin-top: 2.5%;
+  margin-left: 0%;
+}
+div.checkbar-container .selected-btn {
+  border: darkviolet 2px solid;
+  margin-top: 2.5%;
+}
+div.checkbar-container .selected-btn:nth-child(2) {
+  margin-left: 2%;
+  margin-right: 1px;
+}
+
+/*# sourceMappingURL=checkbar.css.map */

@@ -1,0 +1,33 @@
+@import "../mixins.scss";
+// %vertical-center{
+//     // position:relative;
+//     // // top:50%; 父元素已经定高，但是top设置为比例依旧不好使（主要针对.search-input）
+ //     // left:50%;
+//     // // transform:translateY(-50%);
+// }
+div.checkbar-container{
+    border:2px black solid;
+    margin:1% 0px;
+    height:83px;
+    @extend %cancel-float;
+    .search-input{
+        border:darkcyan 2px solid;
+        width:50%;
+        margin: {
+            top:2.5%;
+            left:0%;
+        }
+        @extend %inline-block;
+    }
+    .selected-btn{
+        border:darkviolet 2px solid;
+        margin-top:2.5%;
+        &:nth-child(2){
+            margin: {
+                left:2%;
+                right:1px;
+            }
+        }
+        @extend %inline-block;
+    }
+}
