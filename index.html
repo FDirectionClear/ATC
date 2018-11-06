@@ -168,7 +168,7 @@
     <!--overview组件有独立请求Ajax的能力，后端请求回来的成就数据由组件本身下发-->
     <template id = "overview">
         <div class = "overbox">
-            <div class = "white" v-for = "item in items"><!--1.所有的上传成就信息的对象数组items，一次的所有信息组成item对象-->
+            <div class = "white" v-for = "(item,index) in items" v-if = "showContents(index + 1)"><!--1.所有的上传成就信息的对象数组items，一次的所有信息组成item对象-->
                 <div class="suolve" >
                     <div class="suolve-top-box" >
                         <div class="date">
@@ -220,14 +220,11 @@
             </div><!--white-->
             <div class = "pagination">
                 <ul>
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
-                    <li>4</li>
-                    <li>上一页</li>
-                    <li>下一页</li>
-                    <li>首页</li>
-                    <li>尾页</li>
+                    <li v-for = "x in pageCountCompute" @click = "changePage(x,$event)">{{x}}</li>
+                    <li  @click = "changePage(pagination.page - 1)">上一页</li>
+                    <li  @click = "changePage(pagination.page + 1)">下一页</li>
+                    <li  @click = "changePage(1)">首页</li>
+                    <li  @click = "changePage(pageCountCompute)">尾页</li>
                 </ul>
             </div>
         </div>

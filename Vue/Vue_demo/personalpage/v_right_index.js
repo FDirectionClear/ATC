@@ -214,7 +214,10 @@ Vue.component("overview",{
                 }],
             the_user_opt : {
                 the_user:the_user
-            }
+            },
+            pagination:{
+                page:1,
+            },
         };
     },
     methods:{
@@ -230,7 +233,27 @@ Vue.component("overview",{
             },function(){
                 console.log("请求失败");
             });
+        },
+        showContents(index){
+            /* index应该是前面传来的index + 1 ，这里的index是指从1开始的*/
+            return index > (this.pagination.page -1) * 9 && index <= this.pagination.page*9; 
+        },
+        changePage(index){
+            this.pagination.page = index;
+            if(index == 0){
+                this.pagination.page = 1;
+            } else if(index == Math.ceil(this.items.length / 9) + 1)
+            {   
+                console.log(this.pageCountCompute);
+                this.pagination.page = this.pageCountCompute;
+            }
+            
         }
+    },
+    computed:{
+        pageCountCompute(){
+            return Math.ceil(this.items.length / 9);
+        },
     },
     mounted(){
         this.getPersonalMessage();
