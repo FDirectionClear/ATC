@@ -1,14 +1,15 @@
 @import "./personalNav.scss";
 div.main-container{ /*主体框架样式*/
     position:absolute;
-    left:0px;
-    top:0px;
-    width:70%;
+    top:20%;
+    left:50%;
+    width:80%;
+    transform:translateX(-50%);
     border:2px hotpink solid;
-    margin: {
-        top:110px;
-        left:15%;
-    }
+    // margin: {
+    //     top:110px;
+    //     left:15%;
+    // }
     .placeholder{
         height:1800px;
         padding: {
@@ -26,7 +27,7 @@ div.main-container{ /*主体框架样式*/
         float:left;
         // border:1px green solid;
         // height:300px;
-        width:25%;
+        width:20%;
         // background:lightgreen;
         div.info-left{
             float:left;
@@ -145,7 +146,7 @@ div.main-container{ /*主体框架样式*/
         float:right;
         border:1px blue solid;
         // height:500px;
-        width:75%;
+        width:80%;
         // background:lightblue;
         div.warning{
             margin: {
@@ -153,6 +154,7 @@ div.main-container{ /*主体框架样式*/
             }
         }
         div.tag-container{
+            position:relative;
             height:800px;
             margin: {
                 left:3%;
@@ -160,7 +162,7 @@ div.main-container{ /*主体框架样式*/
             border:4px brown solid;
             ul.title-list{
             border:3px rebeccapurple solid;
-            height:55px;
+            height:7%;
             list-style:none;
                 li.titletag{
                     height:100%;

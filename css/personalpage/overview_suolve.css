@@ -1,5 +1,6 @@
 .white{
 	/* float:left; */
+	vertical-align: top;
 	display:inline-block;
 	margin-left:20px;
 	margin-top:20px;
@@ -8,8 +9,8 @@
 	padding:0px;
 	/*border:0px white solid !important;*/
 	border:black 2px solid !important;
-	width:45%;
-	height:280px;
+	width:30.5%;
+	height:20%;
 }
 
 div.suolve{
@@ -87,6 +88,11 @@ div.suolve-top-box div.see-picture{
 div.suolve-top-box div.see-picture span{
 	font-size:0.8em;
 	color:white;
+}
+
+/***********************/
+div.overbox{
+	height:100%;
 }
 
 
@@ -174,6 +180,7 @@ div.resume-box div.resume-content span{ /*这是缩略图中的简要个人描�
 	display:none;
 }
 
+/************************其他部分***********************/
 .type-content{
 	font-size:70%;
 }
@@ -181,4 +188,21 @@ div.resume-box div.resume-content span{ /*这是缩略图中的简要个人描�
 
 .cc{
 	background:white;
+	height:90.5%;
+}
+
+/************************分页栏样式**************************************/
+div.pagination{
+	position: absolute;
+	left:50%;
+	bottom:0%;
+	transform:translateX(-50%);
+	border:orangered 2px solid;
+}
+div.pagination > ul{
+	list-style:none;
+}
+div.pagination > ul > li {
+	display: inline-block;
+	margin:5px;
 }

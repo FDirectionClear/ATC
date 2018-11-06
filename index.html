@@ -167,58 +167,69 @@
 
     <!--overview组件有独立请求Ajax的能力，后端请求回来的成就数据由组件本身下发-->
     <template id = "overview">
-        <div>
-        <div class = "white" v-for = "item in items"><!--1.所有的上传成就信息的对象数组items，一次的所有信息组成item对象-->
-            <div class="suolve" >
-              <div class="suolve-top-box" >
-                  <div class="date">
-                      <!--2.时间data yy-dd--> 
-                      <span class="day">{{item.data.slice(0,2)}}</span>
-                      <span class="month">{{item.data.slice(2)}}</span>
-                  </div>
-                  <!-- <div class="see-picture">
-                      <span>照片</span>
-                  </div> -->
-                  <div class="top-shawdow" style="display: none;"></div>
-                  <!--3.第一张图片的地址 imgSrc-->
-                  <img class="picture" :src="item.imgSrc">
-              </div>
-              <div class="suolve-bottom-box">
-                  <div class="title-box">
-                      <!--4.单次上传的标题信息 title-->
-                      <h1 class="title">{{ item.title }}</h1>
-                      <h2 class="diy-label">
-                         <ul class="liy-label-list">
-                            <!--5.关键词，最多五个 keyWords-->
-                            <li class="label" v-for = "(key,index) in item.keyWords">{{ key }}</li>
-                         </ul>
-                      </h2>
-                      
-                      <div class="resume-box" style="display: block; top: 150px;">
-                          <div class="resume-content">
-                              <!--6.成就简述，最多120字 resume-->
-                              <span style="display: none; opacity: 1;">{{ item.resume }}</span>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="title-footer">
-                          <ul class="type-phone-info">
-                            <li class="type">
-                                <ul class="type-list">
-                                <!--7.上传成就类型 type-->
-                                    <li class="type-content">数学建模</li>
-                                </ul>
-                            </li>
-                            <!--8.本次成就的上传序号 num-->
-                            <li class="phone-number">
-                                  {{ item.num }}
-                            </li>
-                          </ul>
+        <div class = "overbox">
+            <div class = "white" v-for = "item in items"><!--1.所有的上传成就信息的对象数组items，一次的所有信息组成item对象-->
+                <div class="suolve" >
+                    <div class="suolve-top-box" >
+                        <div class="date">
+                            <!--2.时间data yy-dd--> 
+                            <span class="day">{{item.data.slice(0,2)}}</span>
+                            <span class="month">{{item.data.slice(2)}}</span>
+                        </div>
+                        <!-- <div class="see-picture">
+                            <span>照片</span>
+                        </div> -->
+                        <div class="top-shawdow" style="display: none;"></div>
+                        <!--3.第一张图片的地址 imgSrc-->
+                        <img class="picture" :src="item.imgSrc">
                     </div>
-
-              </div>
-          </div>
-        </div>
+                    <div class="suolve-bottom-box">
+                        <div class="title-box">
+                            <!--4.单次上传的标题信息 title-->
+                            <h1 class="title">{{ item.title }}</h1>
+                            <h2 class="diy-label">
+                                <ul class="liy-label-list">
+                                    <!--5.关键词，最多五个 keyWords-->
+                                    <li class="label" v-for = "(key,index) in item.keyWords">{{ key }}</li>
+                                </ul>
+                            </h2>
+                            
+                            <div class="resume-box" style="display: block; top: 150px;">
+                                <div class="resume-content">
+                                    <!--6.成就简述，最多120字 resume-->
+                                    <span style="display: none; opacity: 1;">{{ item.resume }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="title-footer">
+                            <ul class="type-phone-info">
+                                <li class="type">
+                                    <ul class="type-list">
+                                    <!--7.上传成就类型 type-->
+                                        <li class="type-content">数学建模</li>
+                                    </ul>
+                                </li>
+                                <!--8.本次成就的上传序号 num-->
+                                <li class="phone-number">
+                                    {{ item.num }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div><!--suolve-bottom-box-->
+                </div><!--suolve-->
+            </div><!--white-->
+            <div class = "pagination">
+                <ul>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>上一页</li>
+                    <li>下一页</li>
+                    <li>首页</li>
+                    <li>尾页</li>
+                </ul>
+            </div>
         </div>
     </template>
 
