@@ -92,6 +92,7 @@
                     </pannel>
                 </template>
             </tag>
+
         </div>
 
 
@@ -107,15 +108,16 @@
                     <input v-model = "searchText" type="text" class="form-control" placeholder="Search for title...">
                 </div>
                 <div class="btn-group selected-btn">
-                    <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        selected <span class="caret"></span>
+                    <button ref = "selectbtn" type="button"  class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        All <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
+                        <li><a href="#" id = "all" @click.prevent = "typeSelect($event)">All</a></li>
                         <li><a href="#" @click.prevent = "typeSelect($event)">数学建模</a></li>
-                        <li><a href="#">互联网+</a></li>
-                        <li><a href="#">红色行动</a></li>
+                        <li><a href="#" @click.prevent = "typeSelect($event)">吃屎</a></li>
+                        <li><a href="#" @click.prevent = "typeSelect($event)">红色行动</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">其他</a></li>
+                        <li><a href="#" @click.prevent = "typeSelect($event)">其他</a></li>
                     </ul>
                 </div>
                 <div class="btn-group selected-btn">
@@ -139,7 +141,7 @@
     <template id = "classified">
         <div class = 'classified-container'>
             <ul>
-                <li v-for = "(item,index) in items" v-show = "claMatch(item.title,currentKeyStr)">
+                <li v-for = "(item,index) in items" v-show = "claMatch(item,currentKeyStr)">
                     <div class = "cla-left">
                         <h2 class = "cla-title">{{item.title}}</h2>
                         <h3 class = "cla-keywords"><span v-for = "key in item.keyWords">{{key}}</span></h3>

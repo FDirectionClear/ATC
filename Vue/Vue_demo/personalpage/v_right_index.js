@@ -99,7 +99,8 @@ Vue.component("checkbar",{
     methods:{
         typeSelect(event){
             // console.log(event.target.innerHTML);
-            this.$emit("keyTypeUpdate",event.target.innerHTML);
+            this.$refs.selectbtn.innerHTML = event.target.innerHTML + "<span class='caret'></span>";
+            this.$emit("key-type-update",event.target.innerHTML);
         }
     },
     watch:{
@@ -118,12 +119,13 @@ Vue.component("classified",{
         },
         keyType:{
             type:String,
-            default:"数学"
+            default:""
         }
     },
     data:function(){
         return {
             currentKeyStr:this.keyStr,
+            currentKeyType:this.keyType,
             items:[{
                 data:"0505",
                 imgSrc:["img/personalpage/yoom2.jpg","img/personalpage/yoom.jpg"], 
@@ -139,7 +141,7 @@ Vue.component("classified",{
                 title:"数学建模国赛一等奖",
                 keyWords:["国赛","数学建模","一等奖","激动"],
                 resume:"历经了半个数十家的数学建模培训，虽然劳累，但是收获了国赛一等奖还是非常值得的。",
-                type:"红色行动",
+                type:"数学建模",
                 num:"18845123698"
             }],
             the_user_opt : {
@@ -161,15 +163,23 @@ Vue.component("classified",{
             });
         },
         claMatch(item,str){
-            var reg = new RegExp(str.trim()); // 最开始记反了，在RegExp中的字符串应该是要匹配的内容
-            var bol =  reg.test(item); // test中的字符串是的要找的地方
-            return reg.test(item);
+            if(this.currentKeyType == document.getElementById("all").innerHTML){
+                console.log(document.getElementById("all").innerHTML);
+                var regType = new RegExp();
+            } else {
+                var regType = new RegExp(this.currentKeyType);
+            }
+            var regStr = new RegExp(str.trim()); // 最开始记反了，在RegExp中的字符串应该是要匹配的内容
+            return  regType.test(item.type) && regStr.test(item.title);
         }
     },
     watch:{
        keyStr(){
             this.currentKeyStr = this.keyStr;
-       } 
+       },
+       keyType(){
+            this.currentKeyType = this.keyType;
+       }
     },
     mounted(){
         this.getPersonalMessage();
