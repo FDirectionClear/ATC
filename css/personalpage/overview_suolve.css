@@ -187,8 +187,9 @@ div.resume-box div.resume-content span{ /*这是缩略图中的简要个人描�
 
 
 .cc{
+	position:relative;
 	background:white;
-	height:90.5%;
+	height:150%;
 }
 
 /************************分页栏样式**************************************/
@@ -196,13 +197,19 @@ div.pagination{
 	position: absolute;
 	left:50%;
 	bottom:0%;
+	/* bottom:100%; */
 	transform:translateX(-50%);
 	border:orangered 2px solid;
 }
 div.pagination > ul{
 	list-style:none;
+	height:30px;
 }
 div.pagination > ul > li {
 	display: inline-block;
 	margin:5px;
+	height:100%;
+}
+div.pagination li.action{
+	border:1px red dotted;
 }

@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="always" name="referrer">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
     <title>ATC测试个人空间</title>
     <!--JQuery-->
     <script src = "JQuery/jquery-3.2.1.min.js"></script>
@@ -141,7 +143,7 @@
     <template id = "classified">
         <div class = 'classified-container'>
             <ul>
-                <li v-for = "(item,index) in items" v-show = "claMatch(item,currentKeyStr)">
+                <li v-for = "(item,index) in items" v-if = "showContents(index + 1)" v-show = "claMatch(item,currentKeyStr)">
                     <div class = "cla-left">
                         <h2 class = "cla-title">{{item.title}}</h2>
                         <h3 class = "cla-keywords"><span v-for = "key in item.keyWords">{{key}}</span></h3>
@@ -160,7 +162,19 @@
                     </div>
                 </li>
             </ul>
-            
+            <div class = "pagination">
+                <ul>
+                    <li v-for = "x in pageCountCompute.counts"   @click = "changePage(x,$event)"><span>{{x}}</span></li>
+                    <template v-if = "pageCountCompute.shrunk">
+                        <li><span>......</span></li>
+                        <li @click = "changePage(pageCountCompute.realCounts,$event)"><span>{{pageCountCompute.realCounts}}</span></li>
+                    </template>
+                    <li  @click = "changePage(pagination.page - 1)" ><span>上一页</span></li>
+                    <li  @click = "changePage(pagination.page + 1)"><span>下一页</span></li>
+                    <li  @click = "changePage(1)"><span>首页</span></li>
+                    <li  @click = "changePage(pageCountCompute)"><span>尾页</span></li>
+                </ul>
+            </div>
         </div>
     </template>
 
@@ -220,11 +234,15 @@
             </div><!--white-->
             <div class = "pagination">
                 <ul>
-                    <li v-for = "x in pageCountCompute" @click = "changePage(x,$event)">{{x}}</li>
-                    <li  @click = "changePage(pagination.page - 1)">上一页</li>
-                    <li  @click = "changePage(pagination.page + 1)">下一页</li>
-                    <li  @click = "changePage(1)">首页</li>
-                    <li  @click = "changePage(pageCountCompute)">尾页</li>
+                    <li v-for = "x in pageCountCompute.counts"   @click = "changePage(x,$event)"><span>{{x}}</span></li>
+                    <template v-if = "pageCountCompute.shrunk">
+                        <li><span>......</span></li>
+                        <li @click = "changePage(pageCountCompute.realCounts,$event)"><span>{{pageCountCompute.realCounts}}</span></li>
+                    </template>
+                    <li  @click = "changePage(pagination.page - 1)" ><span>上一页</span></li>
+                    <li  @click = "changePage(pagination.page + 1)"><span>下一页</span></li>
+                    <li  @click = "changePage(1)"><span>首页</span></li>
+                    <li  @click = "changePage(pageCountCompute)"><span>尾页</span></li>
                 </ul>
             </div>
         </div>

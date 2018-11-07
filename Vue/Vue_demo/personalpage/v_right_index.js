@@ -146,7 +146,10 @@ Vue.component("classified",{
             }],
             the_user_opt : {
                 the_user:the_user
-            }
+            },
+            pagination:{
+                page:1,
+            },
         };
     },
     methods:{
@@ -171,7 +174,36 @@ Vue.component("classified",{
             }
             var regStr = new RegExp(str.trim()); // 最开始记反了，在RegExp中的字符串应该是要匹配的内容
             return  regType.test(item.type) && regStr.test(item.title);
+        },
+        showContents(index){
+            /* index应该是前面传来的index + 1 ，这里的index是指从1开始的*/
+            return index > (this.pagination.page -1) * 4 && index <= this.pagination.page*4; 
+        },
+        changePage(index){
+            if(typeof index == "number"){
+                var reIndex = index;
+                this.pagination.page = index;
+            } else {
+                var reIndex = index.realCounts;
+                this.pagination.page = index.realCounts;
+            }
+            
+            if(reIndex == 0){
+                this.pagination.page = 1;
+            } else if(reIndex == Math.ceil((this.items.length / 4) + 1))
+            {   
+                console.log(this.pageCountCompute);
+                this.pagination.page = this.pageCountCompute.realCounts;
+            }
+            
         }
+    },
+    computed:{
+        pageCountCompute(){
+            var pageCount = Math.ceil(this.items.length / 4);
+            // console.log({counts:pageCount,shrunk:false});
+            return pageCount > 6 ? {counts:4,realCounts:pageCount,shrunk:true} : {counts:pageCount,realCounts:pageCount,shrunk:false};
+        },
     },
     watch:{
        keyStr(){
@@ -239,20 +271,29 @@ Vue.component("overview",{
             return index > (this.pagination.page -1) * 9 && index <= this.pagination.page*9; 
         },
         changePage(index){
-            this.pagination.page = index;
-            if(index == 0){
+            if(typeof index == "number"){
+                var reIndex = index;
+                this.pagination.page = index;
+            } else {
+                var reIndex = index.realCounts;
+                this.pagination.page = index.realCounts;
+            }
+            
+            if(reIndex == 0){
                 this.pagination.page = 1;
-            } else if(index == Math.ceil(this.items.length / 9) + 1)
+            } else if(reIndex == Math.ceil((this.items.length / 9) + 1))
             {   
                 console.log(this.pageCountCompute);
-                this.pagination.page = this.pageCountCompute;
+                this.pagination.page = this.pageCountCompute.realCounts;
             }
             
         }
     },
     computed:{
         pageCountCompute(){
-            return Math.ceil(this.items.length / 9);
+            var pageCount = Math.ceil(this.items.length / 9);
+            // console.log({counts:pageCount,shrunk:false});
+            return pageCount > 6 ? {counts:4,realCounts:pageCount,shrunk:true} : {counts:pageCount,realCounts:pageCount,shrunk:false};
         },
     },
     mounted(){

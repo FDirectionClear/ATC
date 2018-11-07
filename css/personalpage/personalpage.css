@@ -155,9 +155,10 @@ li > img.profile {
 div.main-container {
   /*主体框架样式*/
   position: absolute;
-  top: 20%;
+  top: 136px;
   left: 50%;
-  width: 80%;
+  width: 1200px;
+  height: 1800px;
   transform: translateX(-50%);
   border: 2px hotpink solid;
   /***********************************左右分割******左右分割********左右分割**************************************/
@@ -285,6 +286,7 @@ div.main-container div.info-left-main div.info-left div.my-manifesto div.minor-b
 div.main-container div.info-right-main {
   float: right;
   border: 1px blue solid;
+  height: 100%;
   width: 80%;
 }
 div.main-container div.info-right-main div.warning {
@@ -292,7 +294,7 @@ div.main-container div.info-right-main div.warning {
 }
 div.main-container div.info-right-main div.tag-container {
   position: relative;
-  height: 800px;
+  height: 45%;
   margin-left: 3%;
   border: 4px brown solid;
 }

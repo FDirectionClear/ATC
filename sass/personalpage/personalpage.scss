@@ -1,15 +1,12 @@
 @import "./personalNav.scss";
 div.main-container{ /*主体框架样式*/
     position:absolute;
-    top:20%;
+    top:136px;
     left:50%;
-    width:80%;
+    width:1200px;
+    height:1800px;
     transform:translateX(-50%);
     border:2px hotpink solid;
-    // margin: {
-    //     top:110px;
-    //     left:15%;
-    // }
     .placeholder{
         height:1800px;
         padding: {
@@ -145,7 +142,7 @@ div.main-container{ /*主体框架样式*/
     div.info-right-main{
         float:right;
         border:1px blue solid;
-        // height:500px;
+        height:100%;
         width:80%;
         // background:lightblue;
         div.warning{
@@ -155,7 +152,7 @@ div.main-container{ /*主体框架样式*/
         }
         div.tag-container{
             position:relative;
-            height:800px;
+            height:45%;
             margin: {
                 left:3%;
             }
